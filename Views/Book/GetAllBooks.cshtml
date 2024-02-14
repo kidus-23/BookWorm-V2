@@ -1,0 +1,40 @@
+﻿@model List<Book>;
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Book List";
+}
+<h2>Book List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Book Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Cover</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr style="justify-content: center; margin-top: 10px">
+                <th>@file.BookId</th>
+                <td>@file.Title</td>
+                <td>@file.Description</td>
+                <td>@file.Price</td>
+                <td>
+                        <img src="/images/@file.CoverImage" alt="Image" width="40" height="70" />
+                </td>
+                <td>
+                    <a type="button" class="btn btn-primary " asp-controller="Book"
+                       asp-action="Detail" asp-route-BookId="@file.BookId">Details</a>
+                    <a type="button" class="btn btn-danger" asp-controller="Book" asp-action="DeleteBook"
+                       asp-route-BookId="@file.BookId" style="justify-content: center;">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
